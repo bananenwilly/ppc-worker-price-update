@@ -8,10 +8,11 @@ async function gatherResponse(response) {
   }
 }
 
-async function getFromApi(url) {
+async function getFromApi(url, authHeader = "") {
   const init = {
     headers: {
       'content-type': 'application/json',
+      'Authorization': "Basic " + authHeader,
     },
   }
   const response = await fetch(url, init)
@@ -31,7 +32,7 @@ addEventListener('scheduled', (event) => {
 async function handleSchedule() {
   //get coinpaprika ppc/usd price
   const paprikaResponse = await getFromApi(
-    'https://api.coinpaprika.com/v1/tickers/ppc-peercoin',
+    'https://paprika.ppc.lol/v1/tickers/ppc-peercoin', PAPRIKA_TOKEN
   )
   //get currency fiat/usd exchange rates
   const openExchangeResponse = await getFromApi(
