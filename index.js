@@ -51,7 +51,6 @@ async function handleSchedule() {
     DKK: rates['DKK'],
     EUR: rates['EUR'],
     GBP: rates['GBP'],
-    HRK: rates['HRK'],
     IDR: rates['IDR'],
     INR: rates['INR'],
     IRR: rates['IRR'],
