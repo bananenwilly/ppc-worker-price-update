@@ -155,7 +155,44 @@ async function handleSchedule() {
     "XOF",
     "XPF",
     "ZAR",
-    "ZMK"
+    "ZMK",
+    "AFN",
+    "ANG",
+    "AWG",
+    "BBD",
+    "BMD",
+    "BZD",
+    "CUP",
+    "DJF",
+    "DZD",
+    "ERN",
+    "ETB",
+    "GHS",
+    "GIP",
+    "HTG",
+    "KHR",
+    "KPW",
+    "KYD",
+    "MMK",
+    "MRO",
+    "NIO",
+    "NPR",
+    "PAB",
+    "PKR",
+    "SBD",
+    "SHP",
+    "SOS",
+    "SRD",
+    "SSP",
+    "SVC",
+    "SYP",
+    "TMT",
+    "TOP",
+    "UZS",
+    "VEF",
+    "VUV",
+    "WST",
+    "XCD",
   ];
 
   const prices = {};
@@ -168,7 +205,7 @@ async function handleSchedule() {
   const ppcUsdPrice = paprikaResponse['quotes']['USD']['price'];
   prices['PPC'] = parseFloat(ppcUsdPrice.toFixed(6));
 
-  // add ARS TODO
+  // add ARS
   const yadioResponse = await getFromApi('https://api.yadio.io/exrates/USD');
   const arsUsdPrice = yadioResponse['USD']['ARS'];
   prices['ARS'] = arsUsdPrice;
