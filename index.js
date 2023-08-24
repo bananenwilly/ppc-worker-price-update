@@ -191,6 +191,8 @@ async function handleSchedule() {
     "VUV",
     "WST",
     "XCD",
+    "FJD",
+    "PGK",
   ];
 
   const prices = {};
