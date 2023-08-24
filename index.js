@@ -101,7 +101,6 @@ async function handleSchedule() {
     "GYD",
     "HKD",
     "HNL",
-    "HRK",
     "HUF",
     "ILS",
     "IQD",
