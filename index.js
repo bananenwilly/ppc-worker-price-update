@@ -178,7 +178,6 @@ async function handleSchedule() {
     "NIO",
     "NPR",
     "PAB",
-    "PKR",
     "SBD",
     "SHP",
     "SOS",
