@@ -143,7 +143,6 @@ async function handleSchedule() {
     "SDG",
     "SGD",
     "SLL",
-    "STD",
     "SZL",
     "TJS",
     "TND",
@@ -191,6 +190,12 @@ async function handleSchedule() {
     "XCD",
     "FJD",
     "PGK",
+    "CLF",
+    "MRU",
+    "YER",
+    "ZWL",
+    "STN",
+    "ZMW"
   ];
 
   const prices = {};
