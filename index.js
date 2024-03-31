@@ -21,7 +21,7 @@ async function getFromApi(url, authHeader = "") {
     console.log(`results for ${url}`, results);
     return results;
   } catch (error) {
-    console.error(`error for ${url}`, error);
+    console.error(`Error for ${url}`, error);
   }
 }
 
@@ -212,7 +212,7 @@ async function handleSchedule() {
     const arsUsdPrice = yadioResponse['USD']['ARS'];
     prices['ARS'] = arsUsdPrice;
   } else {
-    console.error('Failed to get ARS price, taking from openexchangerates');
+    console.error('Error: Failed to get ARS price, taking from openexchangerates');
     prices['ARS'] = openExchangeRates['ARS'];
   }
 
