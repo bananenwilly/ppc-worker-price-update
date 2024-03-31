@@ -18,7 +18,7 @@ async function getFromApi(url, authHeader = "") {
     }
     const response = await fetch(url, init);
     const results = await gatherResponse(response);
-    console.log(`results for ${url}`, results);
+    console.log(`Results for ${url}`, results);
     return results;
   } catch (error) {
     console.error(`Error for ${url}`, error);
