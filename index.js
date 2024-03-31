@@ -35,6 +35,16 @@ async function handleSchedule() {
     `https://openexchangerates.org/api/latest.json?app_id=${CURRCONV_KEY}`,
   );
 
+  //check if API calls where successful
+  if (paprikaResponse['error']) {
+    console.log(paprikaResponse);
+    throw Error('Error fetching paprika API');
+  }
+  if (openExchangeResponse['error']) {
+    console.log(openExchangeResponse);
+    throw Error('Error fetching openexchangerates API');
+  }
+
   const rates = openExchangeResponse['rates'];
   const enabledCurrencies = [
     "AED",
