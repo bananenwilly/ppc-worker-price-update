@@ -36,11 +36,11 @@ async function handleSchedule() {
   );
 
   //check if API calls where successful
-  if (paprikaResponse['error']) {
+  if (!paprikaResponse) {
     console.log(paprikaResponse);
     throw Error('Error fetching paprika API');
   }
-  if (openExchangeResponse['error']) {
+  if (!openExchangeResponse) {
     console.log(openExchangeResponse);
     throw Error('Error fetching openexchangerates API');
   }
