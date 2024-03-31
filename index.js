@@ -9,15 +9,20 @@ async function gatherResponse(response) {
 }
 
 async function getFromApi(url, authHeader = "") {
-  const init = {
-    headers: {
-      'content-type': 'application/json',
-      'Authorization': "Basic " + authHeader,
-    },
+  try {
+    const init = {
+      headers: {
+        'content-type': 'application/json',
+        'Authorization': "Basic " + authHeader,
+      },
+    }
+    const response = await fetch(url, init);
+    const results = await gatherResponse(response);
+    console.log(`results for ${url}`, results);
+    return results;
+  } catch (error) {
+    console.error(`error for ${url}`, error);
   }
-  const response = await fetch(url, init);
-  const results = await gatherResponse(response);
-  return results;
 }
 
 addEventListener('scheduled', (event) => {
@@ -35,17 +40,7 @@ async function handleSchedule() {
     `https://openexchangerates.org/api/latest.json?app_id=${CURRCONV_KEY}`,
   );
 
-  //check if API calls where successful
-  if (!paprikaResponse) {
-    console.log(paprikaResponse);
-    throw Error('Error fetching paprika API');
-  }
-  if (!openExchangeResponse) {
-    console.log(openExchangeResponse);
-    throw Error('Error fetching openexchangerates API');
-  }
-
-  const rates = openExchangeResponse['rates'];
+  const openExchangeRates = openExchangeResponse['rates'];
   const enabledCurrencies = [
     "AED",
     "AFN",
@@ -204,7 +199,7 @@ async function handleSchedule() {
   const prices = {};
   // loop over enabledCurrencies for prices that are availble on openexchangerates
   for (const currency of enabledCurrencies) {
-    prices[currency] = rates[currency];
+    prices[currency] = openExchangeRates[currency];
   }
 
   // add PPC 
@@ -213,8 +208,13 @@ async function handleSchedule() {
 
   // add ARS
   const yadioResponse = await getFromApi('https://api.yadio.io/exrates/USD');
-  const arsUsdPrice = yadioResponse['USD']['ARS'];
-  prices['ARS'] = arsUsdPrice;
+  if (yadioResponse) {
+    const arsUsdPrice = yadioResponse['USD']['ARS'];
+    prices['ARS'] = arsUsdPrice;
+  } else {
+    console.error('Failed to get ARS price, taking from openexchangerates');
+    prices['ARS'] = openExchangeRates['ARS'];
+  }
 
   // sort prices by key
   const sortedPrices = Object.fromEntries(Object.entries(prices).sort());
