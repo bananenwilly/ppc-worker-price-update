@@ -20,11 +20,6 @@ async function getFromApi(url, authHeader = "") {
   return results;
 }
 
-addEventListener('fetch', (event) => {
-  event.waitUntil(handleSchedule())
-  return event.respondWith(new Response());
-})
-
 addEventListener('scheduled', (event) => {
   event.waitUntil(handleSchedule());
 })
