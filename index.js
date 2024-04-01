@@ -32,7 +32,8 @@ addEventListener('scheduled', (event) => {
 async function handleSchedule() {
   //get coinpaprika ppc/usd price
   const paprikaResponse = await getFromApi(
-    'https://paprika.ppc.lol/v1/tickers/ppc-peercoin', PAPRIKA_TOKEN
+    // 'https://paprika.ppc.lol/v1/tickers/ppc-peercoin', PAPRIKA_TOKEN
+    'https://paprika.ppc.lol/data.json', PAPRIKA_TOKEN
   );
 
   //get currency fiat/usd exchange rates
